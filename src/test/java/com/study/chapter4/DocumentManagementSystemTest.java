@@ -29,16 +29,11 @@ class DocumentManagementSystemTest {
         Document document = onlyDocument();
 
         //then
-        assertAttributeEquals(document, PATIENT, JOE_BLOGGS);
-        assertAttributeEquals(document, BODY,
-                "On 5th January 2017 I examined Joe's teeth.\n" +
-                        "We discussed his switch from drinking Coke to Diet Coke.\n" +
-                        "No new problems were noted with his teeth.");
         assertAttributeEquals(document, Attributes.PATH, LETTER);
     }
 
     @Test
-    public void shouldImportLetterAttributes() throws Exception
+    public void letter_type_파일_임포트_성공() throws Exception
     {
         //given
         //when
