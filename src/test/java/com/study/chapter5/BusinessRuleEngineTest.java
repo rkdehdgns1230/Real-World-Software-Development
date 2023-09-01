@@ -2,13 +2,19 @@ package com.study.chapter5;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 
-
+@ExtendWith(MockitoExtension.class)
 class BusinessRuleEngineTest {
+
+    @Mock
+    Action mockAction;
 
     @Test
     void shouldHaveNoRulesInitially(){
@@ -34,7 +40,14 @@ class BusinessRuleEngineTest {
 
     @Test
     void shouldExecuteOneAction(){
+        //given
         BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(new ArrayList<>());
-        Action mockAction;
+
+        //when
+        businessRuleEngine.addAction(mockAction);
+        businessRuleEngine.run();
+
+        //then
+        verify(mockAction).execute();
     }
 }
