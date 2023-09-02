@@ -15,6 +15,8 @@ class BusinessRuleEngineTest {
 
     @Mock
     Action mockAction;
+    @Mock
+    Facts mockFacts;
 
     @Test
     void shouldHaveNoRulesInitially(){
@@ -49,5 +51,15 @@ class BusinessRuleEngineTest {
 
         //then
         verify(mockAction).execute();
+    }
+
+    @Test
+    public void shouldPerformAnActionWithFacts(){
+        BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(new ArrayList<>());
+
+        businessRuleEngine.addAction(mockAction);
+        businessRuleEngine.run();
+
+        verify(mockAction).execute(mockFacts);
     }
 }
