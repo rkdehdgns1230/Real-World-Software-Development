@@ -5,9 +5,11 @@ import java.util.List;
 
 public class BusinessRuleEngine {
     private final List<Action> actions;
+    private final Facts facts;
 
-    public BusinessRuleEngine(List<Action> actions) {
-        this.actions = actions;
+    public BusinessRuleEngine(Facts facts) {
+        this.actions = new ArrayList<>();
+        this.facts = facts;
     }
 
     public void addAction(final Action action){
@@ -19,6 +21,6 @@ public class BusinessRuleEngine {
     }
 
     public void run(){
-        actions.forEach(Action::execute);
+        actions.forEach(action -> action.execute(facts));
     }
 }
